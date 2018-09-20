@@ -113,8 +113,8 @@ function gplot(G,
     outangle = pi/5) where {T <: Real}
 
     length(locs_x_in) != length(locs_y_in) && error("Vectors must be same length")
-    const N = _nv(G)
-    const NE = _ne(G)
+    N = _nv(G)
+    NE = _ne(G)
     if nodelabel != nothing && length(nodelabel) != N
         error("Must have one label per node (or none)")
     end

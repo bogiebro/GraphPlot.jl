@@ -4,6 +4,8 @@ module GraphPlot
 
 using Compose  # for plotting features
 using LightGraphs
+using SparseArrays
+using DelimitedFiles
 
 const gadflyjs = joinpath(dirname(Base.source_path()), "gadfly.js")
 

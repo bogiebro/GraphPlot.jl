@@ -96,11 +96,11 @@ julia> locs_x, locs_y = spring_layout(g)
 function spring_layout(G, locs_x=2*rand(_nv(G)).-1.0, locs_y=2*rand(_nv(G)).-1.0; C=2.0, MAXITER=100, INITTEMP=2.0)
 
     #size(adj_matrix, 1) != size(adj_matrix, 2) && error("Adj. matrix must be square.")
-    const N = _nv(G)
+    N = _nv(G)
     adj_matrix = _adjacency_matrix(G)
 
     # The optimal distance bewteen vertices
-    const K = C * sqrt(4.0 / N)
+    K = C * sqrt(4.0 / N)
 
     # Store forces and apply at end of iteration all at once
     force_x = zeros(N)
@@ -183,12 +183,12 @@ julia> nlist[2] = [6:num_vertiecs(g)]
 julia> locs_x, locs_y = shell_layout(g, nlist)
 ```
 """
-function shell_layout(G, nlist::Union{Void, Vector{Vector{Int}}} = nothing)
+function shell_layout(G, nlist::Union{Nothing, Vector{Vector{Int}}} = nothing)
     if _nv(G) == 1
         return [0.0], [0.0]
     end
     if nlist == nothing
-        nlist = Array{Vector{Int}}(1)
+        nlist = Array{Vector{Int}}(undef, 1)
         nlist[1] = collect(1:_nv(G))
     end
     radius = 0.0
